@@ -1,0 +1,48 @@
+syntax = "proto3";
+//import "google/protobuf/empty.proto";
+option csharp_namespace = "BusGrpcEndpoint.Protos";
+//import "google/protobuf/timestamp.proto";
+package BusGrpcEndpoint;
+
+service BusGrpcEndpoint {
+  rpc GetBus(BusRequest) returns (Bus); // Bus gets initial data about itself, by id
+  rpc GetFob(Nfc) returns (Fob); // Scanner gets Fob MAC Address by NFC ID
+  rpc CheckIn(BusRequest) returns (Response); // NFC scanned
+  rpc CheckOut(BusRequest) returns (Response); // Bluetooth device left
+}
+
+message Bus {
+  int32 id = 1;
+  string name = 2;
+  string make = 3;
+  string driver = 4;
+  int32 route_id = 5;
+  int32 total_bus_capacity = 6;
+  int32 current_bus_occupation = 7;
+  string latitude = 8;
+  string longitude = 9;
+}
+
+message Fob {
+  string mac_address = 1;
+}
+
+message BusRequest {
+  int32 id = 1;
+}
+
+message Nfc {
+  string nfc_id = 1;
+}
+
+message BusList{
+  repeated Bus bus_list = 1;
+}
+
+message DatabaseChangedBus{
+  bool has_changed = 1;
+}
+
+message Response {
+  bool succeeded = 1;
+}
