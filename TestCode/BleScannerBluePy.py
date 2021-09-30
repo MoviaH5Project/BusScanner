@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # Source: https://github.com/IanHarvey/bluepy/blob/master/bluepy/blescan.py
 
 from __future__ import print_function
@@ -82,7 +80,7 @@ class ScanPrint(btle.DefaultDelegate):
         if dev.rssi < self.opts.sensitivity:
             return
 
-        print('    Device (%s): %s (%s), %d dBm %s' %
+        print('    Devices (%s): %s (%s), %d dBm %s' %
               (status,
                ANSI_WHITE + dev.addr + ANSI_OFF,
                dev.addrType,
